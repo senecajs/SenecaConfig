@@ -2,14 +2,14 @@
 
 > _Seneca Config_ is a plugin for [Seneca](http://senecajs.org)
 
-    User Configral business logic plugin for the Seneca platform.
+Live configuration plugin for the Seneca framework.
 
 [![npm version](https://img.shields.io/npm/v/@seneca/Config.svg)](https://npmjs.com/package/@seneca/Config)
-[![build](https://github.com/senecajs/seneca-Config/actions/workflows/build.yml/badge.svg)](https://github.com/senecajs/seneca-Config/actions/workflows/build.yml)
-[![Coverage Status](https://coveralls.io/repos/github/senecajs/seneca-Config/badge.svg?branch=main)](https://coveralls.io/github/senecajs/seneca-Config?branch=main)
-[![Known Vulnerabilities](https://snyk.io/test/github/senecajs/seneca-Config/badge.svg)](https://snyk.io/test/github/senecajs/seneca-Config)
+[![build](https://github.com/senecajs/SenecaConfig/actions/workflows/build.yml/badge.svg)](https://github.com/senecajs/SenecaConfig/actions/workflows/build.yml)
+[![Coverage Status](https://coveralls.io/repos/github/senecajs/SenecaConfig/badge.svg?branch=main)](https://coveralls.io/github/senecajs/SenecaConfig?branch=main)
+[![Known Vulnerabilities](https://snyk.io/test/github/senecajs/SenecaConfig/badge.svg)](https://snyk.io/test/github/senecajs/SenecaConfig)
 [![DeepScan grade](https://deepscan.io/api/teams/5016/projects/20872/branches/581541/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5016&pid=20872&bid=581541)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8242b80adb8acb685afd/maintainability)](https://codeclimate.com/github/senecajs/seneca-Config/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8242b80adb8acb685afd/maintainability)](https://codeclimate.com/github/senecajs/SenecaConfig/maintainability)
 
 | ![Voxgig](https://www.voxgig.com/res/img/vgt01r.png) | This open source module is sponsored and supported by [Voxgig](https://www.voxgig.com). |
 | ---------------------------------------------------- | --------------------------------------------------------------------------------------- |
