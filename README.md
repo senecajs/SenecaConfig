@@ -43,15 +43,11 @@ _None._
 
 ## Action Patterns
 
-* [accept:entry,biz:Config](#-acceptentrybizConfig-)
-* [biz:Config,create:entry](#-bizConfigcreateentry-)
-* [biz:Config,ensure:entry](#-bizConfigensureentry-)
-* [biz:Config,give:award](#-bizConfiggiveaward-)
-* [biz:Config,load:entry](#-bizConfigloadentry-)
-* [biz:Config,load:rules](#-bizConfigloadrules-)
-* [biz:Config,lost:entry](#-bizConfiglostentry-)
-* [biz:Config,update:occur](#-bizConfigupdateoccur-)
-* [biz:Config,update:entry](#-bizConfigupdateentry-)
+* [get:val,sys:config](#-getvalsysconfig-)
+* [init:val,sys:config](#-initvalsysconfig-)
+* [list:val,sys:config](#-listvalsysconfig-)
+* [map:val,sys:config](#-mapvalsysconfig-)
+* [set:val,sys:config](#-setvalsysconfig-)
 
 
 <!--END:action-list-->
@@ -61,66 +57,58 @@ _None._
 
 ## Action Descriptions
 
-### &laquo; `accept:entry,biz:Config` &raquo;
+### &laquo; `get:val,sys:config` &raquo;
+
+No description provided.
+
+
+#### Parameters
+
+
+* _key_ : [Function: String]
+
+
+----------
+### &laquo; `init:val,sys:config` &raquo;
+
+No description provided.
+
+
+#### Parameters
+
+
+* _key_ : [Function: String]
+
+
+----------
+### &laquo; `list:val,sys:config` &raquo;
 
 No description provided.
 
 
 
 ----------
-### &laquo; `biz:Config,create:entry` &raquo;
-
-Create Configral entry.
-
-
-
-----------
-### &laquo; `biz:Config,ensure:entry` &raquo;
+### &laquo; `map:val,sys:config` &raquo;
 
 No description provided.
 
 
+#### Parameters
+
+
+* _prefix_ : [Function: String]
+
 
 ----------
-### &laquo; `biz:Config,give:award` &raquo;
+### &laquo; `set:val,sys:config` &raquo;
 
 No description provided.
 
 
-
-----------
-### &laquo; `biz:Config,load:entry` &raquo;
-
-No description provided.
+#### Parameters
 
 
-
-----------
-### &laquo; `biz:Config,load:rules` &raquo;
-
-No description provided.
-
-
-
-----------
-### &laquo; `biz:Config,lost:entry` &raquo;
-
-No description provided.
-
-
-
-----------
-### &laquo; `biz:Config,update:occur` &raquo;
-
-No description provided.
-
-
-
-----------
-### &laquo; `biz:Config,update:entry` &raquo;
-
-No description provided.
-
+* _key_ : [Function: String]
 
 
 ----------
