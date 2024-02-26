@@ -1,6 +1,6 @@
 {
-  "name": "@seneca/Config",
-  "version": "0.0.1",
+  "name": "@seneca/config",
+  "version": "0.0.2",
   "main": "dist/Config.js",
   "type": "commonjs",
   "types": "dist/Config.d.ts",
