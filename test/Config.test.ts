@@ -1,7 +1,7 @@
 /* Copyright © 2024 Seneca Project Contributors, MIT License. */
 
 import Seneca from 'seneca'
-import SenecaMsgTest from 'seneca-msg-test'
+// import SenecaMsgTest from 'seneca-msg-test'
 // import { Maintain } from '@seneca/maintain'
 
 import ConfigDoc from '../src/ConfigDoc'
@@ -39,11 +39,11 @@ describe('Config', () => {
 
     const res3 = await seneca.post('sys:config,init:val,key:a')
     // console.log('res3', res3)
-    expect(res3).toMatchObject({ ok: false, why: 'entry-exists' })
+    expect(res3).toMatchObject({ ok: false, why: 'key-exists' })
 
     const res4 = await seneca.post('sys:config,set:val,key:b')
     // console.log('res4', res4)
-    expect(res4).toMatchObject({ ok: false, why: 'entry-not-found' })
+    expect(res4).toMatchObject({ ok: false, why: 'key-not-found' })
 
     const res5 = await seneca.post('sys:config,get:val,key:c')
     // console.log('res5', res5)
@@ -66,6 +66,37 @@ describe('Config', () => {
       ok: true,
       list: [{ key: 'a', val: 2, id: 'a' }, { key: 'd', val: 4, id: 'd' }]
     })
+
+  })
+
+
+  test('init', async () => {
+    const seneca = makeSeneca()
+
+    const res0 = await seneca.post('sys:config,init:val,key:a,val:1')
+    expect(res0).toMatchObject({ ok: true, key: 'a', val: 1, entry: { key: 'a', val: 1 } })
+
+    const res0a = await seneca.post('sys:config,get:val,key:a')
+    expect(res0a).toMatchObject({ ok: true, key: 'a', val: 1, entry: { key: 'a', val: 1 } })
+
+
+    const res1 = await seneca.post('sys:config,init:val,key:a,val:2')
+    expect(res1).toMatchObject({ ok: false, why: 'key-exists' })
+
+    const res1a = await seneca.post('sys:config,get:val,key:a')
+    expect(res1a).toMatchObject({ ok: true, key: 'a', val: 1, entry: { key: 'a', val: 1 } })
+
+
+    // Do not overwrite existing
+
+    const res2 = await seneca.post('sys:config,init:val,key:a,val:3,existing:true')
+    expect(res2).toMatchObject({
+      ok: true, why: 'existing',
+      key: 'a', val: 1, entry: { key: 'a', val: 1 }
+    })
+
+    const res2a = await seneca.post('sys:config,get:val,key:a')
+    expect(res2a).toMatchObject({ ok: true, key: 'a', val: 1, entry: { key: 'a', val: 1 } })
 
   })
 
@@ -516,7 +547,7 @@ describe('Config', () => {
     })
 
     const res6 = await seneca.post('sys:config,map:val,prefix:a')
-    console.log('res6', res6)
+    // console.log('res6', res6)
     expect(res6).toMatchObject({
       ok: true,
       list: [

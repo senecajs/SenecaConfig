@@ -19,6 +19,8 @@ export type ConfigOptions = Partial<ConfigOptionsFull>
 function Config(this: any, options: ConfigOptionsFull) {
   const seneca: any = this
 
+  const { Default } = seneca.valid
+
   // TODO: entity needs exported util for this
   const canon =
     ('string' === typeof options.canon.zone ? options.canon.zone : '-') + '/' +
@@ -29,8 +31,8 @@ function Config(this: any, options: ConfigOptionsFull) {
     .fix('sys:config')
     .message('get:val', { key: String }, msgGetVal)
     .message('set:val', { key: String }, msgSetVal)
-    .message('init:val', { key: String }, msgInitVal)
-    .message('list:val', {}, msgListVal)
+    .message('init:val', { key: String, existing: Default(false) }, msgInitVal)
+    .message('list:val', { q: {}, }, msgListVal)
     .message('map:val', { prefix: String }, msgMapVal)
 
 
@@ -61,7 +63,7 @@ function Config(this: any, options: ConfigOptionsFull) {
     if (null == entry) {
       return {
         ok: false,
-        why: 'entry-not-found'
+        why: 'key-not-found'
       }
     }
 
@@ -84,14 +86,27 @@ function Config(this: any, options: ConfigOptionsFull) {
 
     const key = msg.key
     const val = msg.val
+    const existing = true === msg.existing
 
     let entry = await seneca.entity(canon).load$(key)
 
-    // Entry must exist
+    // Entry must not exist
     if (null != entry) {
+
+      // DO NOT OVERRIDE EXISTING
+      if (existing) {
+        return {
+          ok: true,
+          why: 'existing',
+          key,
+          val: entry.val,
+          entry: entry.data$(false),
+        }
+      }
+
       return {
         ok: false,
-        why: 'entry-exists'
+        why: 'key-exists'
       }
     }
 
