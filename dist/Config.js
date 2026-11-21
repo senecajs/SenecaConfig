@@ -23,8 +23,8 @@ function Config(options) {
         return {
             ok: null != entry,
             key,
-            val: entry === null || entry === void 0 ? void 0 : entry.val,
-            entry: entry === null || entry === void 0 ? void 0 : entry.data$(false),
+            val: entry?.val,
+            entry: entry?.data$(false),
         };
     }
     async function msgSetVal(msg) {
