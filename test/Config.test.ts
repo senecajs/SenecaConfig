@@ -13,10 +13,25 @@ describe('Config', () => {
     expect(ConfigDoc).toBeDefined()
     const seneca = Seneca({ legacy: false })
       .test()
-      .use('promisify')
-      .use('entity')
+      .use('@seneca/entity')
       .use(Config)
     await seneca.ready()
+  })
+
+
+  test('canon', async () => {
+    const seneca = makeSeneca({ canon: { zone: 'z0', base: 'b0', name: 'n0' } })
+
+    const res0 = await seneca.post('sys:config,init:val,key:a,val:1')
+    expect(res0).toMatchObject({ ok: true, key: 'a', val: 1 })
+
+    // The entries are stored under the canon given in the options.
+    const entry = await seneca.entity('z0/b0/n0').load$('a')
+    expect(entry).toMatchObject({ id: 'a', key: 'a', val: 1 })
+    expect(await seneca.entity('sys/config').load$('a')).toEqual(null)
+
+    const res1 = await seneca.post('sys:config,get:val,key:a')
+    expect(res1).toMatchObject({ ok: true, key: 'a', val: 1 })
   })
 
 
@@ -582,9 +597,7 @@ describe('Config', () => {
 function makeSeneca(opts: any = {}) {
   const seneca = Seneca({ legacy: false })
     .test()
-    .use('promisify')
-    .use('entity')
-    .use('entity-util', { when: { active: true } })
+    .use('@seneca/entity')
     .use(Config, opts)
   return seneca
 }

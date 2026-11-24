@@ -23,13 +23,16 @@ exchange rates, feature flags, A/B testing etc.
 ## Install
 
 ```sh
-$ npm install @seneca/Config
+$ npm install seneca@^4 @seneca/entity @seneca/config
 ```
+
+Version 0.6 needs Seneca 4, `@seneca/entity` 29 or later, and Node.js 24 or
+later. For Seneca 3, use `@seneca/config@0.5`.
 
 ## Quick Example
 
 ```js
-seneca.use('Config', {})
+seneca.use('@seneca/entity').use('@seneca/config')
 
 const initRes = await seneca.post('sys:config,init:val,key:a,val:1')
 // === { ok: true, key: 'a', val: 1, entry: { key: 'a', val: 1 } }
